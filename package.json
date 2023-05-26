@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node --transpile-only src/entrypoint/chunk-posts.ts sample.jsonl",
-    "run": "ts-node --transpile-only",
+    "start": "npm run run sample.jsonl",
+    "run": "ts-node --transpile-only src/entrypoint/chunk-posts.ts",
     "build": "npm run tsc && pkg dist/entrypoint/chunk-posts.js --out-path executables",
     "build-dist": "npm run build -- --targets node16-linux-x64",
     "build-linux": "npm run build -- --targets node16-linux-x64,node16-linux-arm64",

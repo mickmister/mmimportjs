@@ -1,10 +1,15 @@
 import fs from 'node:fs';
 import readline from 'node:readline';
 
-export const runChunkPosts = (inputFileName: string) => {
+export const runChunkPosts = (inputFilePath: string) => {
+    console.log(`Processing ${inputFilePath}`);
+
+    const inputFileName = inputFilePath.substring(inputFilePath.lastIndexOf('/') + 1);
+
     let beginTimeString = new Date().toISOString();
     beginTimeString = beginTimeString.substring(0, beginTimeString.length - 5);
     const outFolder = `out/${beginTimeString}`;
+
     fs.mkdirSync(outFolder, {recursive: true});
 
     let CHUNK_SIZE = 10000;
@@ -20,6 +25,7 @@ export const runChunkPosts = (inputFileName: string) => {
 
     const makeWriteStream = (): fs.WriteStream => {
         const outputFileName = getCurrentFileName();
+        console.log(`Creating file ${outputFileName}`);
         return fs.createWriteStream(outputFileName, {autoClose: true});
     };
 
@@ -45,7 +51,7 @@ export const runChunkPosts = (inputFileName: string) => {
     let writeStream = makeWriteStream();
 
     const rl = readline.createInterface({
-        input: fs.createReadStream(inputFileName),
+        input: fs.createReadStream(inputFilePath),
         crlfDelay: Infinity,
     });
 
@@ -69,6 +75,6 @@ export const runChunkPosts = (inputFileName: string) => {
         } else {
             deleteLastFile();
         }
-        console.log('Finished.');
+        console.log(`Finished processing ${inputFilePath}`);
     });
 };

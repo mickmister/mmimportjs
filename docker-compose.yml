@@ -4,4 +4,4 @@ services:
     build: .
     command: npm i && npm run build
     volumes:
-      - ..:/app
+      - .:/app
