@@ -16,27 +16,11 @@ jobs:
       - name: Install modules
         run: npm ci
       - name: Build bundle
-        run: npm run build-chunk-linux
-      - uses: actions/upload-artifact@v3
-        with:
-          name: dist
-          path: dist
-      - uses: actions/upload-artifact@v3
-        with:
-          name: chunk-posts-macos-x64
-          path: executables/chunk-posts-macos-x64
-      - uses: actions/upload-artifact@v3
-        with:
-          name: chunk-posts-macos-arm64
-          path: executables/chunk-posts-macos-arm64
+        run: npm run build-dist
       - uses: actions/upload-artifact@v3
         with:
           name: chunk-posts-linux-x64
           path: executables/chunk-posts-linux-x64
-      - uses: actions/upload-artifact@v3
-        with:
-          name: chunk-posts-linux-arm64
-          path: executables/chunk-posts-linux-arm64
 
   lint:
     runs-on: ubuntu-latest
