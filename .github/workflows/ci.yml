@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build-chunk-posts:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: Install modules
+      run: npm ci
+    - name: Build bundle
+      run: npm run build-chunk
+    - uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
+    - uses: actions/upload-artifact@v3
+        with:
+          name: executables
+          path: executables
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: Install modules
+      run: npm ci
+    - name: Run ESLint
+      run: npm run lint
+
+  types:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: Install modules
+      run: npm ci
+    - name: Check Types
+      run: npm run check-types
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: Install modules
+      run: npm ci
+    - name: Run Tests
+      run: echo TODO
