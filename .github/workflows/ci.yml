@@ -21,6 +21,10 @@ jobs:
         with:
           name: chunk-posts-linux-x64
           path: executables/chunk-posts
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
 
   lint:
     runs-on: ubuntu-latest
