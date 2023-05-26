@@ -116,7 +116,7 @@ const rl = readline.createInterface({
 });
 
 let currentPostNum = 0;
-const STEP_SIZE = 1000;
+const STEP_SIZE = 10000;
 
 rl.on('line', line => {
     currentPostNum++;
@@ -128,7 +128,7 @@ rl.on('line', line => {
 
     if (currentPostNum % STEP_SIZE === 0) {
         if (currentPostNum === STEP_SIZE) {
-            console.log('Processed thousands of posts:')
+            console.log('Processed tens of thousands of lines:')
         }
 
         console.log(currentPostNum);
