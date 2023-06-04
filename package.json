@@ -5,19 +5,22 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node --transpile-only src/index.ts",
-    "build": "tsc"
+    "start": "npm run run sample.jsonl",
+    "run": "ts-node --transpile-only src/entrypoint/chunk-posts.ts",
+    "build": "npm run tsc && pkg dist/entrypoint/chunk-posts.js --out-path executables",
+    "build-dist": "npm run build -- --targets node16-linux-x64",
+    "build-linux": "npm run build -- --targets node16-linux-x64,node16-linux-arm64",
+    "build-macos": "npm run build -- --targets node16-macos-x64,node16-macos-arm64,node16-linux-x64,node16-linux-arm64",
+    "tsc": "tsc",
+    "check-types": "npm run tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/event-stream": "^4.0.1",
     "@types/node": "^20.1.5",
+    "pkg": "^5.8.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
-  },
-  "dependencies": {
-    "event-stream": "^4.0.1"
   }
 }
